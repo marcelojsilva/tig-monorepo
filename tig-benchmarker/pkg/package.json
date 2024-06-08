@@ -1,0 +1,23 @@
+{
+  "name": "tig-benchmarker",
+  "collaborators": [
+    "TIG UG <contact@tig.foundation>",
+    "Ying Chan <ying@tig.foundation>"
+  ],
+  "version": "0.1.0",
+  "license": "https://github.com/tig-foundation/tig-monorepo/tree/main/docs/agreements/end_user_license_agreement.pdf",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tig-foundation/tig-monorepo"
+  },
+  "files": [
+    "tig_benchmarker_bg.wasm",
+    "tig_benchmarker.js",
+    "tig_benchmarker.d.ts"
+  ],
+  "module": "tig_benchmarker.js",
+  "types": "tig_benchmarker.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
