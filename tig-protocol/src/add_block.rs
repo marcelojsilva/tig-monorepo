@@ -693,6 +693,7 @@ async fn update_cutoffs(block: &Block, cache: &mut AddBlockCache) {
             phase_in_challenge_ids.remove(&algorithm.details.challenge_id);
         }
     }
+    phase_in_challenge_ids.insert("c003".to_string());
 
     let mut num_solutions_by_player_by_challenge = HashMap::<String, HashMap<String, u32>>::new();
     for (settings, num_solutions) in cache.active_solutions.values() {
