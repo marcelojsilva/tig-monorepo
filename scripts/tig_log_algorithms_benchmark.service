@@ -1,0 +1,13 @@
+[Unit]
+Description=Run startup script after services are loaded
+After=network.target multi-user.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/tig-monorepo/scripts
+# Source the environment variables and then run the script
+ExecStart=/bin/bash -c "source /etc/profile.d/custom_env_vars.sh && /home/ubuntu/tig-monorepo/scripts/tig_log_algorithms_benchmark.sh"
+RemainAfterExit=false
+
+[Install]
+WantedBy=default.target
