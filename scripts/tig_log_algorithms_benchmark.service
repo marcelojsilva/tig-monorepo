@@ -1,0 +1,12 @@
+[Unit]
+Description=Run startup script after services are loaded
+After=network.target multi-user.target  # Modify based on dependencies you need
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/tig-monorepo/scripts
+ExecStart=/home/ubuntu/tig-monorepo/scripts/tig_log_algorithms_benchmark.sh
+RemainAfterExit=false
+
+[Install]
+WantedBy=default.target
