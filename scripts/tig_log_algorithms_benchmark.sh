@@ -23,6 +23,9 @@ echo "NUM_WORKERS: $NUM_WORKERS" | systemd-cat -t tig_log_algorithms_benchmark -
 : "${CHALLENGE_NAME:?Environment variable CHALLENGE_NAME is not set}"
 echo "CHALLENGE_NAME: $CHALLENGE_NAME" | systemd-cat -t tig_log_algorithms_benchmark -p info
 
+# Log environment variables
+echo "Environment variables: VM_FLAVOUR=$VM_FLAVOUR, NUM_GPUS=$NUM_GPUS, NUM_CPUS=$NUM_CPUS, DIFFICULTY=$DIFFICULTY, START_NONCE=$START_NONCE, NUM_NONCES=$NUM_NONCES, NUM_WORKERS=$NUM_WORKERS, CHALLENGE_NAME=$CHALLENGE_NAME" | systemd-cat -t tig_log_algorithms_benchmark -p info
+
 # Define repo and tig-worker paths
 REPO_DIR=$(dirname $(dirname "$(realpath "$0")"))
 TIG_WORKER_PATH="$REPO_DIR/target/release/tig-worker"
