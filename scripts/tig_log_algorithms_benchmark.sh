@@ -2,26 +2,15 @@
 
 LOG_FILE="/var/log/tig_log_algorithms_benchmark.csv"
 
-# Trace Log
-echo "Starting tig_log_algorithms_benchmark script" | systemd-cat -t tig_log_algorithms_benchmark -p info
-
 # Check for required environment variables, setting default only if needed
-: "${VM_FLAVOUR:?Environment variable VM_FLAVOUR is not set}"
-echo "VM_FLAVOUR: $VM_FLAVOUR" | systemd-cat -t tig_log_algorithms_benchmark -p info
-: "${NUM_GPUS:?Environment variable NUM_GPUS is not set}"
-echo "NUM_GPUS: $NUM_GPUS" | systemd-cat -t tig_log_algorithms_benchmark -p info
-: "${NUM_CPUS:?Environment variable NUM_CPUS is not set}"
-echo "NUM_CPUS: $NUM_CPUS" | systemd-cat -t tig_log_algorithms_benchmark -p info
-: "${DIFFICULTY:?Environment variable DIFFICULTY is not set}"
-echo "DIFFICULTY: $DIFFICULTY" | systemd-cat -t tig_log_algorithms_benchmark -p info
-: "${START_NONCE:?Environment variable START_NONCE is not set}"
-echo "START_NONCE: $START_NONCE" | systemd-cat -t tig_log_algorithms_benchmark -p info
-: "${NUM_NONCES:?Environment variable NUM_NONCES is not set}"
-echo "NUM_NONCES: $NUM_NONCES" | systemd-cat -t tig_log_algorithms_benchmark -p info
-: "${NUM_WORKERS:?Environment variable NUM_WORKERS is not set}"
-echo "NUM_WORKERS: $NUM_WORKERS" | systemd-cat -t tig_log_algorithms_benchmark -p info
-: "${CHALLENGE_NAME:?Environment variable CHALLENGE_NAME is not set}"
-echo "CHALLENGE_NAME: $CHALLENGE_NAME" | systemd-cat -t tig_log_algorithms_benchmark -p info
+VM_FLAVOUR="${VM_FLAVOUR}"
+NUM_GPUS="${NUM_GPUS}"
+NUM_CPUS="${NUM_CPUS}"
+DIFFICULTY="${DIFFICULTY}"
+START_NONCE="${START_NONCE}"
+NUM_NONCES="${NUM_NONCES}"
+NUM_WORKERS="${NUM_WORKERS}"
+CHALLENGE_NAME="${CHALLENGE_NAME}"
 
 # Define repo and tig-worker paths
 REPO_DIR=$(dirname $(dirname "$(realpath "$0")"))
@@ -64,8 +53,6 @@ for wasm_file in "$CHALLENGE_PATH"/*.wasm; do
             vector_search) CHALLENGE_ID="c004" ;;
             *) echo "Error: Challenge '$CHALLENGE_NAME' is not recognized." | systemd-cat -t tig_log_algorithms_benchmark -p err ; exit 1 ;;
         esac
-
-        echo "Challenge ID mapped to $CHALLENGE_ID" | systemd-cat -t tig_log_algorithms_benchmark -p info
 
         # Initialize test parameters
         remaining_nonces=$NUM_NONCES
