@@ -1,8 +1,9 @@
 # Copy to /etc/systemd/system/:
 # sudo cp tig_*.service /etc/systemd/system/
-# sudo chmod +x /home/ubuntu/tig-monorepo/scripts/tig_*.sh
+# sudo chmod +x /home/ubuntu/tig-monorepo/scripts/*.sh
 
 # then execute these commands:
+# sudo systemctl daemon-reload
 # sudo systemctl enable tig_cpu_monitor.service
 # sudo systemctl start tig_cpu_monitor.service
 # sudo systemctl status tig_cpu_monitor.service

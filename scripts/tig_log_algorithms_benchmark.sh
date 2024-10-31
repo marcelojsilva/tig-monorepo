@@ -36,7 +36,7 @@ fi
 # Log CSV header if file does not exist
 if [ ! -f "$LOG_FILE" ]; then
     echo "Creating log file with headers at $LOG_FILE" | systemd-cat -t tig_log_algorithms_benchmark -p info
-    echo "Timestamp,VM_Flavour,Num_GPUs,Num_CPUs,Challenge_ID,Challenge_Name,Difficulty,Algorithm_ID,Start_Time,End_Time,Duration,Nonce,Solutions_Count,Invalid_Count,Output_Stdout,Output_Stderr" > "$LOG_FILE"
+    echo "Timestamp;VM_Flavour;Num_GPUs;Num_CPUs;Challenge_ID;Challenge_Name;Difficulty;Algorithm_ID;Start_Time;End_Time;Duration;Nonce;Solutions_Count;Invalid_Count;Output_Stdout;Output_Stderr" > "$LOG_FILE"
 fi
 
 # Loop through all .wasm algorithms in the specified challenge directory
@@ -88,7 +88,7 @@ for wasm_file in "$CHALLENGE_PATH"/*.wasm; do
             echo "Run complete for $ALGORITHM, duration: $duration ms" | systemd-cat -t tig_log_algorithms_benchmark -p info
 
             # Write to CSV log with timestamp as the first column
-            echo "$timestamp,$VM_FLAVOUR,$NUM_GPUS,$NUM_CPUS,$CHALLENGE_ID,$CHALLENGE_NAME,$DIFFICULTY,$ALGORITHM,$start_time,$end_time,$duration,$current_nonce,$solutions_count,$invalid_count,\"$output_stdout\",\"$output_stderr\"" >> "$LOG_FILE"
+            echo "$timestamp;$VM_FLAVOUR;$NUM_GPUS;$NUM_CPUS;$CHALLENGE_ID;$CHALLENGE_NAME;$DIFFICULTY;$ALGORITHM;$start_time;$end_time;$duration;$current_nonce;$solutions_count;$invalid_count;\"$output_stdout\";\"$output_stderr\"" >> "$LOG_FILE"
 
             # Clean up temporary files
             rm "$stdout" "$stderr"
